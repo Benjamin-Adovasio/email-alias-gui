@@ -8,7 +8,7 @@ app.secret_key = os.environ.get("SECRET_KEY", "change-this")
 USERNAME = os.environ.get("GUI_USERNAME", "admin")
 PASSWORD = os.environ.get("GUI_PASSWORD", "changeme")
 
-VIRTUAL_FILE = "/etc/postfix/virtual"
+VIRTUAL_FILE = "/var/lib/postfix/virtual"
 
 def reload_postfix():
     subprocess.run(["/usr/sbin/postmap", VIRTUAL_FILE])
