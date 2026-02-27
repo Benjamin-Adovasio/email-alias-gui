@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" class="card">
+    <label>Alias</label>
+    <input name="alias" required>
+
+    <label>Recipients (comma separated)</label>
+    <input name="recipients" required>
+
+    <button type="submit">Save Alias</button>
+</form>
+
+<h2>Existing Aliases</h2>
+
+<table>
+    <tr>
+        <th>Alias</th>
+        <th>Recipients</th>
+        <th>Action</th>
+    </tr>
+    {% for alias, recipients in aliases %}
+    <tr>
+        <td>{{ alias }}</td>
+        <td>{{ recipients }}</td>
+        <td><a href="/delete/{{ alias }}" class="delete">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/logout">Logout</a>
+
+{% endblock %}
