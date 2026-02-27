@@ -65,8 +65,12 @@ def dashboard():
         if not updated:
             new_lines.append(f"{alias}    {recipients}\n")
 
-        with open(VIRTUAL_FILE, "w") as f:
+        temp_file = "/tmp/postfix_virtual.tmp"
+
+        with open(temp_file, "w") as f:
             f.writelines(new_lines)
+
+        subprocess.run(["sudo", "/usr/bin/mv", temp_file, VIRTUAL_FILE], check=True)
 
         reload_postfix()
         flash("Alias saved successfully")
@@ -87,8 +91,12 @@ def delete(alias):
 
     new_lines = [line for line in lines if not line.startswith(alias)]
 
-    with open(VIRTUAL_FILE, "w") as f:
+    temp_file = "/tmp/postfix_virtual.tmp"
+
+    with open(temp_file, "w") as f:
         f.writelines(new_lines)
+
+    subprocess.run(["sudo", "/usr/bin/mv", temp_file, VIRTUAL_FILE], check=True)
 
     reload_postfix()
     flash("Alias deleted")
