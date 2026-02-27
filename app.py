@@ -5,8 +5,8 @@ import os
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "change-this")
 
-USERNAME = "admin"
-PASSWORD = "StrongPasswordHere"
+USERNAME = os.environ.get("GUI_USERNAME", "admin")
+PASSWORD = os.environ.get("GUI_PASSWORD", "changeme")
 
 VIRTUAL_FILE = "/etc/postfix/virtual"
 
