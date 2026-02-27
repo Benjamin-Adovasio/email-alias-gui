@@ -70,7 +70,7 @@ def dashboard():
         with open(temp_file, "w") as f:
             f.writelines(new_lines)
 
-        subprocess.run(["sudo", "/usr/bin/mv", temp_file, VIRTUAL_FILE], check=True)
+        subprocess.run(["sudo", "/usr/local/bin/update-postfix-virtual.sh"], check=True)
 
         reload_postfix()
         flash("Alias saved successfully")
@@ -96,7 +96,7 @@ def delete(alias):
     with open(temp_file, "w") as f:
         f.writelines(new_lines)
 
-    subprocess.run(["sudo", "/usr/bin/mv", temp_file, VIRTUAL_FILE], check=True)
+    subprocess.run(["sudo", "/usr/local/bin/update-postfix-virtual.sh"], check=True)
 
     reload_postfix()
     flash("Alias deleted")
